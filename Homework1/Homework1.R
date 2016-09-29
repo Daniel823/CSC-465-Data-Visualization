@@ -1,45 +1,6 @@
 #Problem 1 (Intel Dataset)
 #a. 
+heisenberg <- read.csv(file="C:/Users/dglownia/Documents/GitHub/CSC-465-Data-Visualization/Homework1/Datasets/Intel-1998.csv",head=TRUE,sep=",")
 
-#b.
-
-#c.
-
-#d.
-
-
-#Problem 2 (experiment.xls)
-
-#a. 
-
-#b.
-
-#c.
-
-#d.
-
-#e. 
-
-
-#Problem 3
-#a. 
-
-#b.
-
-#c.
-
-
-#Problem 4 
-#a. 
-
-#b.
-
-
-#Problem 5
-#a. 
-
-#b.
-
-#c
 
 
