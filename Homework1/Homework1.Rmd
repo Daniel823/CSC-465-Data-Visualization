@@ -46,6 +46,16 @@ c.
 
 ```{r}
 
+qplot(intel$Volume,
+      geom="histogram",
+      binwidth = 0.5,  
+      main = "Histogram for Age", 
+      xlab = "Age",  
+      fill=I("blue"), 
+      col=I("red"), 
+      alpha=I(.2),
+      xlim=c(20,50))
+
 ```
 
 
