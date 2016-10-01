@@ -33,7 +33,12 @@ ggplot(data=intel, aes(x=Close, y=Date, group=1)) +
 b.
 
 ```{r}
+library(ggplot2)
 
+c <- ggplot(intel, aes(factor(Volume)))
+
+# By default, uses stat="bin", which gives the count in each category
+c + geom_bar()
 ```
 
 
