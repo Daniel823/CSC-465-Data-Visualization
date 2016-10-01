@@ -14,9 +14,17 @@ intel <- read.csv(file="C:/Users/dglownia/Documents/GitHub/CSC-465-Data-Visualiz
 
 Problem 1 (Intel Dataset)
 
-a. 
+a.
 
 ```{r}
+library(ggplot2)
+
+ggplot(data=intel, aes(x=Close, y=Date, group=1)) +
+  geom_line() +
+  geom_point() +
+  expand_limits(y=0) +
+  xlab("Close") + ylab("Date") +
+  ggtitle("closing price vs. the date")
 
 
 ```
