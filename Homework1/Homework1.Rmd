@@ -19,12 +19,12 @@ a.
 ```{r}
 library(ggplot2)
 
-ggplot(data=intel, aes(x=Close, y=Date, group=1)) +
+ggplot(data=intel, aes(x=Date, y=Close, group=1)) +
   geom_line() +
   geom_point() +
   expand_limits(y=0) +
-  xlab("Close") + ylab("Date") +
-  ggtitle("closing price vs. the date")
+  xlab("Date") + ylab("Close") +
+  ggtitle("Closing Price vs. Date")
 
 
 ```
@@ -35,10 +35,12 @@ b.
 ```{r}
 library(ggplot2)
 
-c <- ggplot(intel, aes(factor(Volume)))
+ggplot(data=intel, aes(x=Date, y=Volume)) + 
+    geom_bar(colour="black", fill="#DD8888", width=.8, stat="identity") + 
+    guides(fill=TRUE) +
+    xlab("Time of day") + ylab("Total Volume") +
+    ggtitle("Average Volume")
 
-# By default, uses stat="bin", which gives the count in each category
-c + geom_bar()
 ```
 
 
@@ -46,15 +48,10 @@ c.
 
 ```{r}
 
-qplot(intel$Volume,
-      geom="histogram",
-      binwidth = 0.5,  
-      main = "Histogram for Age", 
-      xlab = "Age",  
-      fill=I("blue"), 
-      col=I("red"), 
-      alpha=I(.2),
-      xlim=c(20,50))
+hist(intel$Volume, 
+     main="Histogram for Volume", 
+     xlab="Volume", 
+     border="blue")
 
 ```
 
