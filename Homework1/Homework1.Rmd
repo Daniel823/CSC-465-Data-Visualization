@@ -8,6 +8,11 @@ Read Datasets
 #Intel Dataset
 intel <- read.csv(file="C:/Users/dglownia/Documents/GitHub/CSC-465-Data-Visualization/Homework1/Datasets/Intel-1998.csv",head=TRUE,sep=",")
 
+experiment <- read.csv(file="C:/Users/dglownia/Documents/GitHub/CSC-465-Data-Visualization/Homework1/Datasets/PerceptionExperiment2007-2015Fall.csv",head=TRUE,sep=",")
+
+require(gdata)
+infant = read.xls ("C:/Users/dglownia/Documents/GitHub/CSC-465-Data-Visualization/Homework1/Datasets/InfantData.xlsx"), sheet = 1, header = TRUE)
+
 ```
 
 
@@ -59,6 +64,15 @@ hist(intel$Volume,
 d.
 
 ```{r}
+library(ggplot2)
+
+intel[, "PriceRange"] <- NA
+intel$PriceRange <- intel$High - intel$Low
+
+p1 <- ggplot(intel, aes(x = Volume, y = PriceRange)) +
+xlab("Volume") + ylab("Price Range") +
+    ggtitle("Price Range")
+p1 + geom_point()
 
 ```
 
@@ -69,6 +83,14 @@ a.
 
 ```{r}
 
+experiment[, "Error"] <- NA
+experiment$Error <- experiment$Response - experiment$TrueValue
+
+hist(experiment$Error, 
+     main="Distribution of Errors", 
+     xlab="Errors", 
+     border="blue")
+
 ```
 
 
@@ -77,12 +99,30 @@ b.
 
 ```{r}
 
+library(ggplot2)
+
+ggplot(data=experiment, aes(x=Trial, y=Error)) + 
+    geom_bar(colour="black", fill="#DD8888", width=.8, stat="identity") + 
+    xlab("Trail") + ylab("Error") +
+    ggtitle("Median Errors by Test")
+
 ```
 
 
 c.
 
 ```{r}
+
+experiment[, "stdErrorCategory"] <- NA
+experiment$stdErrorCategory <- ifelse(experiment$Error > 0.5,"A", "NAN")
+experiment$stdErrorCategory <- ifelse(experiment$Error < -0.5,"C", "NAN")
+experiment$stdErrorCategory <- ifelse(experiment$Error >= -0.5 || experiment$Error <= 0.5 ,"B", "NAN")
+
+ggplot(data=experiment, aes(x=Trial, y=stdErrorCategory)) + 
+    geom_bar(colour="black", fill="#DD8888", width=.8, stat="identity") + 
+    xlab("Trail") + ylab("Error") +
+    ggtitle("Median Errors by Test")
+
 
 ```
 
@@ -91,11 +131,20 @@ d.
 
 ```{r}
 
+experiment[, "absError"] <- NA
+experiment$absError <- abs(experiment$Error)
+
+ggplot(data=experiment, aes(x=Trial, y=absError)) + 
+    geom_bar(colour="black", fill="#DD8888", width=.8, stat="identity") + 
+    xlab("Trail") + ylab("Error") +
+    ggtitle("Median Errors by Test")
+
 ```
 
 
 e. 
 
+Conclusion:
 ```{r}
 
 ```
